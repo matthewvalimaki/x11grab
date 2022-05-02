@@ -1,0 +1,1 @@
+docker build -t selenium-video:1.0.0 /vagrant/selenium-video

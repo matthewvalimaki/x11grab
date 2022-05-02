@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv sh
+
+while ! nc -z localhost 4444; do   
+  sleep 0.1 # wait for 1/10 of the second before check again
+done
+
+exec s6-setuidgid fv ffmpeg -f x11grab -video_size 1280x1024 -i localhost:99 -c:v libvpx-vp9 -crf 30 -b:v 0 /tmp/recording.webm;

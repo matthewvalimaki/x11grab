@@ -1,0 +1,14 @@
+#!/usr/bin/with-contenv sh
+
+# details
+ffmpeg -i /tmp/recording.mp4 -vf drawtext="fontfile=/usr/share/fonts/ttf-dejavu/DejaVuSerif.ttf: \
+textfile=/tmp/DETAILS: fontcolor=white: fontsize=12: box=1: boxcolor=black@0.1: \
+boxborderw=5: x=0: y=0" -codec:a copy /tmp/recording-details.mp4
+
+# watermark
+ffmpeg -i /tmp/recording-details.mp4 -vf drawtext="fontfile=/usr/share/fonts/ttf-dejavu/DejaVuSerif.ttf: \
+text='Test Machina': fontcolor=white: fontsize=24: box=1: boxcolor=black@0.03: \
+boxborderw=5: x=(w-text_w)/2: y=(h-text_h)/2" -codec:a copy /tmp/recording-copyright.mp4
+
+# persist recording
+mv /tmp/recording-copyright.mp4 /data/execution/${DETAILS_EXECUTION_ID}/media/${DETAILS_MEDIA_ID}.mp4

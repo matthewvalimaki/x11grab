@@ -1,0 +1,5 @@
+#!/usr/bin/execlineb -S0
+
+echo "Date:         "`date +"%m/%d/%Y"` >> /tmp/DETAILS
+echo "Test Case ID: "$DETAILS_TEST_CASE_ID >> /tmp/DETAILS
+echo "Author:       "$DETAILS_AUTHOR >> /tmp/DETAILS
